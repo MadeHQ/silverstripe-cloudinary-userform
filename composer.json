@@ -1,0 +1,16 @@
+{
+    "name": "mademedia/silverstripe-cloudinary-userform",
+    "description": "Replaces Userforms SubmittedFileField to use cloudinary file field",
+    "type": "silverstripe-vendormodule",
+    "require": {
+        "mademedia/silverstripe-cloudinary": "^5.0",
+        "silverstripe/userforms": "^5.8"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Lee Bradley",
+            "email": "lee.bradley@made.media"
+        }
+    ]
+}
