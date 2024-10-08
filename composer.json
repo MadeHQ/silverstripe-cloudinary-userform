@@ -3,8 +3,8 @@
     "description": "Replaces Userforms SubmittedFileField to use cloudinary file field",
     "type": "silverstripe-vendormodule",
     "require": {
-        "mademedia/silverstripe-cloudinary": "^5.0",
-        "silverstripe/userforms": "^5.8"
+        "mademedia/silverstripe-cloudinary": "^8.0",
+        "silverstripe/userforms": "^6.2"
     },
     "license": "BSD-3-Clause",
     "authors": [
