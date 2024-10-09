@@ -1,0 +1,12 @@
+---
+Name: silverstripecloudinaryuserformoverride
+After:
+ - 'mademedia/silverstripe-cloudinary/config#silverstripecloudinarycore'
+ - 'mademedia/silverstripe-cloudinary/userforms#silverstripecloudinaryuserform'
+Only:
+  moduleexists:
+    - 'silverstripe/userforms'
+---
+
+SilverStripe\UserForms\Model\EditableFormField\EditableFileField:
+  hidden: false
