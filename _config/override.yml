@@ -10,3 +10,19 @@ Only:
 
 SilverStripe\UserForms\Model\EditableFormField\EditableFileField:
   hidden: false
+
+SilverStripe\Core\Injector\Injector:
+  # Overrides the Upload Folder modal when selecting File Upload
+  SilverStripe\UserForms\Control\UserDefinedFormAdmin:
+    class: MadeHQ\Cloudinary\UserForms\Controllers\FormAdmin
+
+  SilverStripe\UserForms\Model\Submission\SubmittedFileField:
+    class: MadeHQ\Cloudinary\UserForms\SubmittedFileField
+
+SilverStripe\UserForms\Model\UserDefinedForm:
+  extensions:
+    - MadeHQ\Cloudinary\UserForms\Extensions\FieldEditor
+
+DNADesign\ElementalUserForms\Model\ElementForm:
+  extensions:
+    - MadeHQ\Cloudinary\UserForms\Extensions\FieldEditor

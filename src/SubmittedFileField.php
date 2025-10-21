@@ -18,13 +18,26 @@ class SubmittedFileField extends SubmissionSubmittedFileField
     /**
      * @inheritdoc
      */
-    public function getLink()
+    public function getLink($grant = null)
     {
+        if (! $this->Value) {
+            return null;
+        }
         $config = [
             'resource_type' => 'raw',
             'attachment' => true,
         ];
         return static::cloudinary_instance()->uploadApi()->privateDownloadUrl($this->Value, '', $config);
+    }
+
+    /**
+     * Parent class returns a `File` object, but we're storing Cloudinary public_id in Value
+     *
+     * @return $this
+     */
+    public function getUploadedFileFromDraft()
+    {
+        return $this;
     }
 
     /**
