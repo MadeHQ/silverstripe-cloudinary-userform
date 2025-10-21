@@ -9,7 +9,7 @@ Only:
 ---
 
 SilverStripe\UserForms\Model\EditableFormField\EditableFileField:
-  hidden: false
+  hidden: true
 
 SilverStripe\Core\Injector\Injector:
   # Overrides the Upload Folder modal when selecting File Upload

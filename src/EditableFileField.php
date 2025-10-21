@@ -5,8 +5,10 @@ namespace MadeHQ\Cloudinary\UserForms;
 use Cloudinary\Cloudinary;
 use Cloudinary\Configuration\Configuration;
 use MadeHQ\Cloudinary\UserForms\Controllers\FormAdmin;
+use SilverStripe\Control\Controller;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\ValidationException;
+use SilverStripe\UserForms\Control\UserDefinedFormAdmin;
 use SilverStripe\UserForms\Model\EditableFormField\EditableFileField as EditableFormFieldEditableFileField;
 
 /**
@@ -15,8 +17,6 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableFileField as Editable
 class EditableFileField extends EditableFormFieldEditableFileField
 {
     private static $table_name = 'CloudinaryEditableFileField';
-
-    private static $upload_prefix = 'FormSubmissions';
 
     /**
      *
@@ -49,7 +49,7 @@ class EditableFileField extends EditableFormFieldEditableFileField
      */
     public static function getUploadPrefixDescription()
     {
-        $prefix = trim(static::config()->get('upload_prefix'), '/');
+        $prefix = trim(UserDefinedFormAdmin::config()->get('form_submissions_folder'), '/');
 
         return ($prefix) ?
             _t(__CLASS__ . '.UPLOAD_PREFIX_DESCRIPTION', 'Prefix ({prefix})', [
@@ -88,10 +88,10 @@ class EditableFileField extends EditableFormFieldEditableFileField
             }
         }
 
-        $uploadDir = ltrim(static::config()->get('upload_prefix'), '/');
-        if ($uploadFolder = ltrim((string) $this->UploadFolder)) {
-            $uploadDir.= '/' . $uploadFolder;
-        }
+        $uploadDir = Controller::join_links(
+            UserDefinedFormAdmin::config()->get('form_submissions_folder'),
+            trim((string) $this->UploadFolder)
+        );
 
         $fileName = sprintf(
             'form-%d_field-%d/%s',
